@@ -8,14 +8,25 @@ import reviewsRouter from './services/reviews.js'
 import productImageRouter from './services/uploadImage.js'
 
 const server = express()
-const port = 3001
+const port = process.env.PORT
 
-const publicFolderPath = join(process.cwd(), './public')
-console.log("this is the path to the public folder:", publicFolderPath)
 
 //middleware
+const publicFolderPath = join(process.cwd(), './public')
 server.use(express.static(publicFolderPath))
-server.use(cors())
+
+const whitelist = [process.env.FE_LOCAL_URL, process.env.FE_REMOTE_URL]
+const corsOptions = {
+    origin: function (origin, next) {
+        console.log("ORIGIN: ", origin)
+        if (!origin || whitelist.indexOf(origin) !== -1) {
+            next(null, true)
+        } else {
+            next(new Error("CORS ERROR!"))
+        }
+    }
+}
+server.use(cors(corsOptions))
 server.use(express.json())
 
 //endpoints
@@ -32,5 +43,5 @@ server.use(genericErrorHandler)
 console.table(listEndpoints(server))
 
 server.listen(port, () => {
-    console.log(`Server running on port: ${ port }`)
+    console.log(`Server running on port ${ port }`)
 })
