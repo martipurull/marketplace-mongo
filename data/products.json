@@ -1,0 +1,35 @@
+[
+    {
+        "id": "5d318e1a8541744830bef139",
+        "name": "3DCube",
+        "description": "Purchase this unique NFT, cleverly designed by a latest generation computer.",
+        "artist": "Rostislav",
+        "imageUrl": "https://cdn.pixabay.com/photo/2020/08/02/14/18/blue-5457731_1280.jpg",
+        "price": 200,
+        "category": "digital art",
+        "createdAt": "2021-12-04T09:32:10.535Z",
+        "updatedAt": "2021-12-04T09:32:10.535Z"
+    },
+    {
+        "id": "5d318e1a8541744830bef140",
+        "name": "3DDiamond",
+        "description": "You've never seen a more realistic digital rendition of a diamond. As good as the real thing.",
+        "artist": "GR8 Effect",
+        "imageUrl": "https://cdn.pixabay.com/photo/2016/02/14/09/45/diamond-1199183_1280.jpg",
+        "price": 1500,
+        "category": "digital art",
+        "createdAt": "2021-12-04T09:46:10.535Z",
+        "updatedAt": "2021-12-04T09:46:10.535Z"
+    },
+    {
+        "id": "5d318e1a8541744830bef141",
+        "name": "Spinnamond",
+        "description": "The spinning diamond is an award winning NFT.",
+        "artist": "Open Diamonds",
+        "imageUrl": "https://cdn.pixabay.com/photo/2013/07/13/13/53/diamond-161739_1280.png",
+        "price": 500,
+        "category": "digital art",
+        "createdAt": "2021-12-04T09:46:10.535Z",
+        "updatedAt": "2021-12-04T09:46:10.535Z"
+    }
+]
