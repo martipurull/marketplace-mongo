@@ -33,7 +33,7 @@ productImageRouter.put('/imageUpload', parser.single('productImage'), async (req
         const selectedProduct = products.find(product => product.id === req.params.productId)
         selectedProduct.imageUrl = req.file.path
         console.log(selectedProduct)
-        await saveProducts()
+        await saveProducts(products)
         res.send(req.file)
     } catch (error) {
         next(error)
