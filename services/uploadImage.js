@@ -5,6 +5,7 @@ import createHttpError from 'http-errors'
 import { getProducts, saveProducts, uploadProductImage } from '../library/fs-tools.js'
 import { v2 as cloudinary } from 'cloudinary'
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
+import { encodeImage } from '../library/pdf-tools.js'
 
 const productImageRouter = express.Router({ mergeParams: true })
 
@@ -32,6 +33,7 @@ productImageRouter.put('/imageUpload', parser.single('productImage'), async (req
         const products = await getProducts()
         const selectedProduct = products.find(product => product.id === req.params.productId)
         selectedProduct.imageUrl = req.file.path
+        selectedProduct.encodedImage = await encodeImage(selectedProduct.imageUrl)
         console.log(selectedProduct)
         await saveProducts(products)
         res.send(req.file)
