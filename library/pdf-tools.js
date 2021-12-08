@@ -1,7 +1,5 @@
 import PdfPrinter from 'pdfmake'
-// import base64 from 'base-64'
-// import path from 'path'
-import imageToBase64 from 'image-to-base64'
+import path from 'path'
 
 export const encodeImage = async (imgUrl) => {
     try {
@@ -13,16 +11,6 @@ export const encodeImage = async (imgUrl) => {
 }
 
 export const getPDFReadableStream = data => {
-
-    const encodeImage = async () => {
-        try {
-            const base64Image = await imageToBase64(data.imageUrl)
-            return base64Image
-        } catch (error) {
-            console.log(error)
-        }
-
-    }
 
     const fonts = {
         Helvetica: {
@@ -46,7 +34,7 @@ export const getPDFReadableStream = data => {
                 style: 'subheader'
             },
             {
-                image: `${ data.encodedImage }`,
+                image: `data:image/${ path.extname(data.imageUrl) };base64,${ data.encodedImage }`,
                 width: 150,
                 height: 150,
                 style: 'centerme'
@@ -71,6 +59,7 @@ export const getPDFReadableStream = data => {
             },
             description: {
                 marginTop: 8,
+                alignment: 'center'
             },
             centerme: {
                 alignment: 'center'
@@ -80,7 +69,7 @@ export const getPDFReadableStream = data => {
             font: "Helvetica",
         }
     }
-
+    console.log(docDefinition.content.image)
     const pdfReadableStream = printer.createPdfKitDocument(docDefinition)
     pdfReadableStream.end()
 
