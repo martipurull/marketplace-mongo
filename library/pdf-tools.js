@@ -35,8 +35,8 @@ export const getPDFReadableStream = data => {
             },
             {
                 image: `data:image/${ path.extname(data.imageUrl) };base64,${ data.encodedImage }`,
-                width: 150,
-                height: 150,
+                width: 250,
+                height: 250,
                 style: 'centerme'
             },
             {
