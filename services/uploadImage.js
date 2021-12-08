@@ -41,6 +41,8 @@ productImageRouter.put('/imageUpload', parser.single('productImage'), async (req
 })
 
 
+
+
 // const productImageUploader = multer({
 //     fileFilter: (req, file, multerNext) => {
 //         if (file.mimetype !== "image/jpeg" && file.mimetype !== "image/gif" && file.mimetype !== "image/png") {

@@ -6,6 +6,7 @@ import { badRequestHandler, unauthorisedHandler, notFoundHandler, genericErrorHa
 import productsRouter from './services/products.js'
 import reviewsRouter from './services/reviews.js'
 import productImageRouter from './services/uploadImage.js'
+import downloadPDFRouter from './services/downloadPDF.js'
 
 const server = express()
 const port = process.env.PORT
@@ -32,6 +33,7 @@ server.use(express.json())
 //endpoints
 server.use('/products', productsRouter)
 server.use('/products/:productId', productImageRouter)
+server.use('/products/:productId', downloadPDFRouter)
 server.use('/products/:productId/reviews', reviewsRouter)
 
 //error handlers
