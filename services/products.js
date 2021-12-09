@@ -4,6 +4,7 @@ import { validationResult } from 'express-validator'
 import createHttpError from 'http-errors'
 import { productValidation } from './validations.js'
 import { getProducts, saveProducts } from '../library/fs-tools.js'
+import { sendProductConfirmation } from '../library/email-tools.js'
 
 const productsRouter = express.Router({ mergeParams: true })
 
@@ -16,6 +17,7 @@ productsRouter.post('/', productValidation, async (req, res, next) => {
             const products = await getProducts()
             const newProduct = { ...req.body, id: uuidv4(), createdAt: new Date() }
             products.push(newProduct)
+            await sendProductConfirmation(newProduct)
             await saveProducts(products)
             res.status(201).send(`New product added with id: ${ newProduct.id }`)
         }

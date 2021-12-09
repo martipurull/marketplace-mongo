@@ -8,7 +8,8 @@
         "price": 200,
         "category": "digital art",
         "createdAt": "2021-12-04T09:32:10.535Z",
-        "updatedAt": "2021-12-04T09:32:10.535Z"
+        "updatedAt": "2021-12-04T09:32:10.535Z",
+        "email": "marti____@hotmail.com"
     },
     {
         "id": "5d318e1a8541744830bef140",
@@ -19,7 +20,8 @@
         "price": 1500,
         "category": "digital art",
         "createdAt": "2021-12-04T09:46:10.535Z",
-        "updatedAt": "2021-12-04T09:46:10.535Z"
+        "updatedAt": "2021-12-04T09:46:10.535Z",
+        "email": "marti____@hotmail.com"
     },
     {
         "id": "5d318e1a8541744830bef141",
@@ -30,7 +32,8 @@
         "price": 500,
         "category": "digital art",
         "createdAt": "2021-12-04T09:46:10.535Z",
-        "updatedAt": "2021-12-04T09:46:10.535Z"
+        "updatedAt": "2021-12-04T09:46:10.535Z",
+        "email": "marti____@hotmail.com"
     },
     {
         "name": "PortraitA",
@@ -40,6 +43,18 @@
         "price": 7500,
         "category": "digital art",
         "id": "d7df0af5-0672-4c0a-a921-3a96a614b2f7",
-        "createdAt": "2021-12-08T16:48:23.624Z"
+        "createdAt": "2021-12-08T16:48:23.624Z",
+        "email": "marti____@hotmail.com"
+    },
+    {
+        "name": "DigitalEye",
+        "description": "My eye like no other eye, limited to 100 copies, each of them with a slight variation to make them exceptionally unique.",
+        "artist": "Leyer",
+        "price": 3600,
+        "category": "digital art",
+        "email": "marti____@hotmail.com",
+        "id": "838c727f-8739-4dda-84f5-bf1860ad4708",
+        "createdAt": "2021-12-09T15:25:16.010Z",
+        "imageUrl": "https://res.cloudinary.com/dpyfjvq8s/image/upload/v1639063570/strive-blog/ki56cupg2wykdtw4pbqc.jpg"
     }
 ]
