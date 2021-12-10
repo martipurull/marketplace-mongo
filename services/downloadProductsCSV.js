@@ -6,7 +6,6 @@ import json2csv from 'json2csv'
 const downloadProductsCSVRouter = express.Router({ mergeParams: true })
 
 downloadProductsCSVRouter.get('/downloadProductsCSV', async (req, res, next) => {
-    console.log("I'M IN!!!!")
     try {
         res.setHeader("Content-Disposition", "attachment; filename=products.csv")
         const source = getProductsReadableStream()

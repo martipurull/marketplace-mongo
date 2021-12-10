@@ -5,6 +5,7 @@ import createHttpError from 'http-errors'
 import { productValidation } from './validations.js'
 import { getProducts, saveProducts } from '../library/fs-tools.js'
 import { sendProductConfirmation } from '../library/email-tools.js'
+import { generatePDFAsync, encodeImage } from '../library/pdf-tools.js'
 
 const productsRouter = express.Router({ mergeParams: true })
 
@@ -17,6 +18,12 @@ productsRouter.post('/', productValidation, async (req, res, next) => {
             const products = await getProducts()
             const newProduct = { ...req.body, id: uuidv4(), createdAt: new Date() }
             products.push(newProduct)
+            if (newProduct.imageUrl) {
+                const encodedImage = await encodeImage(newProduct.imageUrl)
+                await generatePDFAsync(newProduct, encodedImage)
+            } else {
+                await generatePDFAsync(newProduct)
+            }
             await sendProductConfirmation(newProduct)
             await saveProducts(products)
             res.status(201).send(`New product added with id: ${ newProduct.id }`)
