@@ -1,5 +1,6 @@
 import express from 'express'
 import pool from '../library/db-tools/connect.js'
+import moment from 'moment'
 
 const productsDbRouter = express.Router({ mergeParams: true })
 
@@ -46,7 +47,7 @@ productsDbRouter.put('/:productId', async (req, res, next) => {
         const updateDetails = Object.entries(req.body).map(([key, value]) => `${ key } = '${ value }'`).join(', ')
         const updatedAt = moment().format("YYYY-MM-DD hh:mm:ss")
         const result = await pool.query(
-            `UPDATE product SET ${ updateDetails }, updatedAt='${ updatedAt }' WHERE product_id = ${ req.params.productId } RETURNING *;`
+            `UPDATE product SET ${ updateDetails }, updated_at='${ updatedAt }' WHERE product_id = ${ req.params.productId } RETURNING *;`
         )
         res.send(result.rows[0])
     } catch (error) {
