@@ -20,6 +20,13 @@ CREATE TABLE IF NOT EXISTS review
     updated_at timestamp with time zone DEFAULT now()
 );
 
+CREATE TABLE IF NOT EXISTS image
+(
+    image_id integer PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY,
+    image_url varchar(2083) NOT NULL,
+    product_id integer REFERENCES product
+);
+
 -- CREATE TABLE IF NOT EXISTS category
 -- (
 --     category_id integer PRIMARY KEY NOT NULL GENERATED ALWAYS AS IDENTITY
