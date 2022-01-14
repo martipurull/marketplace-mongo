@@ -5,8 +5,6 @@ import q2m from 'query-to-mongo'
 
 const UserRouter = express.Router()
 
-//
-
 
 
 
