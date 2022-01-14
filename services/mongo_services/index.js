@@ -45,7 +45,7 @@ productsRouter.get('/', async (req, res, next) => {
             .limit(mongoQuery.options.limit)
             .skip(mongoQuery.options.skip)
             .sort(mongoQuery.options.sort)
-        res.send({ link: mongoQuery.links('/blogPosts', noOfProducts), pageTotal: Math.ceil(noOfProducts / mongoQuery.options.limit), noOfProducts, products })
+        res.send({ link: mongoQuery.links('/products', noOfProducts), pageTotal: Math.ceil(noOfProducts / mongoQuery.options.limit), noOfProducts, products })
     } catch (error) {
         next(error)
     }
