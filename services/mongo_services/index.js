@@ -176,9 +176,9 @@ productsRouter.post('/:productId/imageUpload', parser.single('productImage'), as
     try {
         const product = await ProductModel.findById(req.params.productId)
         if (product) {
-            product.imageUrl = req.file.path
-            await product.save()
-            res.send(product)
+            const productToEdit = await ProductModel.findByIdAndUpdate(req.params.productId, { $set: { imageUrl: req.file.path } }, { new: true })
+            await productToEdit.save()
+            res.send(productToEdit)
         } else {
             next(createHttpError(404, `Review with id ${ req.params.reviewId } does not exist or has been deleted.`))
         }
