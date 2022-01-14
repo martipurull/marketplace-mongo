@@ -17,6 +17,7 @@ const ProductSchema = new Schema(
         brand: { type: String, required: true },
         imageUrl: { type: String, required: true },
         price: { type: Number, required: true },
+        sku: { type: String, required: true },
         category: { type: String, required: true, enum: ["Digital Art", "Fandom", "Tech", "Meme"] },
         reviews: { type: [ReviewSchema], default: [] }
     },
