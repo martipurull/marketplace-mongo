@@ -188,4 +188,4 @@ productsRouter.post('/:productId/imageUpload', parser.single('productImage'), as
 
 
 
-export default ProductsRouter
+export default productsRouter

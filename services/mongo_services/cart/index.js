@@ -2,7 +2,6 @@ import express from 'express'
 import CartModel from './schema.js'
 import ProductModel from '../schema.js'
 import createHttpError from 'http-errors'
-import q2m from 'query-to-mongo'
 
 const CartRouter = express.Router()
 
