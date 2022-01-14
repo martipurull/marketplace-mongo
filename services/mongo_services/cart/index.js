@@ -15,9 +15,13 @@ CartRouter.post('/:userId/addToCart', async (req, res, next) => {
             if (isProductInCart) {
                 const cart = await CartModel.findOneAndUpdate(
                     { userId: req.params.userId, status: 'active', "products.sku": sku },
-                    { $inc: { "products.$.quantity": quantity } },
+                    { $inc: { "products.$.quantity": quantity, "products.$.price": productToBuy.price } },
                     { new: true })
-                res.send(cart)
+                const itemsInCart = cart.products.length
+                const subtotalArr = cart.products.map(product => product.price)
+                const reducer = (previousValue, currentValue) => previousValue + currentValue
+                const cartTotal = subtotalArr.reduce(reducer)
+                res.send({ cart, itemsInCart, cartTotal })
             } else {
                 const productToAdd = { ...productToBuy.toObject(), quantity }
                 const cart = await CartModel.findOneAndUpdate(
