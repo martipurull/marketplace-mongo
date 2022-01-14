@@ -7,10 +7,10 @@ import mongoose from "mongoose";
 import ProductsRouter from "./services/mongo_services/index.js";
 import UserRouter from "./services/mongo_services/users/index.js";
 import {
-  badRequestHandler,
-  unauthorisedHandler,
-  notFoundHandler,
-  genericErrorHandler,
+    badRequestHandler,
+    unauthorisedHandler,
+    notFoundHandler,
+    genericErrorHandler,
 } from "./errorHandlers.js";
 
 const server = express();
@@ -22,8 +22,9 @@ server.use(cors());
 server.use(express.json());
 
 //endpoints
-server.use("/products", ProductsRouter);
-server.use("/users", UserRouter);
+server.use('/products', ProductsRouter)
+server.use('/users', UserRouter)
+server.use('/cart', CartRouter)
 
 //error handlers
 server.use(badRequestHandler);
@@ -34,14 +35,14 @@ server.use(genericErrorHandler);
 mongoose.connect(process.env.MONGO_CONNECTION);
 
 mongoose.connection.on("connected", () => {
-  console.log("Connected to Mongo!");
+    console.log("Connected to Mongo!");
 });
 
 server.listen(port, () => {
-  console.table(listEndpoints(server));
-  console.log(`Server running on port: ${port}`);
+    console.table(listEndpoints(server));
+    console.log(`Server running on port: ${ port }`);
 });
 
 mongoose.connection.on("error", (err) => {
-  console.log(err);
+    console.log(err);
 });
