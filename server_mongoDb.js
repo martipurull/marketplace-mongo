@@ -17,6 +17,8 @@ server.use(express.json())
 
 //endpoints
 server.use('/products', ProductsRouter)
+server.use('/users', UserRouter)
+server.use('/cart', CartRouter)
 
 //error handlers
 server.use(badRequestHandler)
