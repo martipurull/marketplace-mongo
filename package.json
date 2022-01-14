@@ -17,17 +17,19 @@
     "image-to-base64": "^2.2.0",
     "json2csv": "^5.0.6",
     "moment": "^2.29.1",
+    "mongoose": "^6.1.6",
     "multer": "^1.4.3",
     "multer-storage-cloudinary": "^4.0.0",
     "pdfmake": "^0.2.4",
     "pg": "^8.7.1",
+    "query-to-mongo": "^0.10.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "dotenv": "^10.0.0"
   },
   "scripts": {
-    "dev": "nodemon -e js -r dotenv/config ./server_dB.js",
+    "dev": "nodemon -e js -r dotenv/config ./server_mongoDb.js",
     "start": "node ./server_dB.js",
     "prestart": "npm run createTables",
     "createTables": "node -r dotenv/config ./library/db-tools/createTables.js"
