@@ -2,8 +2,29 @@ import express from 'express'
 import ProductModel from './schema.js'
 import createHttpError from 'http-errors'
 import q2m from 'query-to-mongo'
+import multer from 'multer'
+import { v2 as cloudinary } from 'cloudinary'
+import { CloudinaryStorage } from 'multer-storage-cloudinary'
 
-const productsRouter = express.Router()
+const productsRouter = express.Router({ mergeParams: true })
+
+//cloudinary config
+const { CLOUDINARY_NAME, CLOUDINARY_API_KEY, CLOUDINARY_SECRET } = process.env
+
+cloudinary.config({
+    cloud_name: CLOUDINARY_NAME,
+    api_key: CLOUDINARY_API_KEY,
+    api_secret: CLOUDINARY_SECRET
+})
+
+const cloudinaryStorage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'nft-products-mongo',
+    },
+});
+
+const parser = multer({ storage: cloudinaryStorage });
 
 //products endpoints
 productsRouter.post('/', async (req, res, next) => {
@@ -148,6 +169,23 @@ productsRouter.delete('/:productId/reviews/:reviewId', async (req, res, next) =>
         next(error)
     }
 })
+
+//image upload endpoint
+productsRouter.post('/:productId/imageUpload', parser.single('productImage'), async (req, res, next) => {
+    try {
+        const product = await ProductModel.findById(req.params.productId)
+        if (product) {
+            product.imageUrl = req.file.path
+            await product.save()
+            res.send(product)
+        } else {
+            next(createHttpError(404, `Review with id ${ req.params.reviewId } does not exist or has been deleted.`))
+        }
+    } catch (error) {
+        next(error)
+    }
+})
+
 
 
 export default ProductsRouter
